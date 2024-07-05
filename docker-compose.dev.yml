@@ -1,0 +1,22 @@
+version: '3'
+services:
+  express-app:
+    build:
+      context: .
+      args:
+        NODE_ENV: development
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - MONGO_IP=mongo
+      - MONGO_PORT=27017
+      - MONGO_USER=sajjad
+      - MONGO_PASSWORD=sajjad1234
+      - SESSION_SECRET=secret
+    command: npm run dev
+  mongo:
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: sajjad
+      MONGO_INITDB_ROOT_PASSWORD: sajjad1234
